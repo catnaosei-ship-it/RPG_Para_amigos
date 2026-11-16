@@ -593,8 +593,14 @@ function dispararFlash() {
         const mira = document.getElementById("mira-foto");
         if (mira) {
             const foto = document.createElement("img");
-            foto.src = "imagem/agente_genérico.png"; 
-            foto.style.width = "100%"; foto.style.height = "100%"; foto.style.objectFit = "cover"; foto.style.borderRadius = "8px"; foto.style.opacity = "0"; foto.style.transition = "opacity 0.5s ease"; foto.style.filter = "grayscale(100%) contrast(1.5)";
+            foto.src = "Imagem/agente_genérico.png"; 
+            foto.style.width = "100%"; 
+          foto.style.height = "100%"; 
+          foto.style.objectFit = "cover"; 
+          foto.style.borderRadius = "8px"; 
+          foto.style.opacity = "0"; 
+          foto.style.transition = "opacity 0.5s ease"; 
+          foto.style.filter = "grayscale(100%) contrast(1.5)";
             mira.appendChild(foto);
             setTimeout(() => { foto.style.opacity = "0.8"; }, 50);
         }
@@ -622,7 +628,7 @@ function iniciarEfeitoDigitacao() {
 function criarSelosFundo() {
     const fundo = document.getElementById("fundo-selos");
     if (!fundo || fundo.innerHTML !== "") return;
-    const imagensSelos = ["imagem/selo1.png", "imagem/selo2.png", "imagem/selo3.png", "imagem/selo4.png", "imagem/selo5.png"];
+    const imagensSelos = ["Imagem/selo1.png", "Imagem/selo2.png", "Imagem/selo3.png", "Imagem/selo4.png", "Imagem/selo5.png"];
     for (let i = 0; i < 15; i++) {
         const selo = document.createElement("img");
         selo.src = imagensSelos[Math.floor(Math.random() * imagensSelos.length)];
