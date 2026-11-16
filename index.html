@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Agente — Dispositivo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="device">
+
+  <!-- Barra de status -->
+  <div id="statusBar">
+    <span id="statusTime">--:--</span>
+    <div class="status-icons">
+      <span id="statusWifi" style="opacity: 0.3;">Wi-Fi</span>
+      <span id="statusSignal">4G</span>
+      <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: currentColor;"><path d="M2 22h20V2L2 22z"/></svg>
+    </div>
+  </div>
+
+  <!-- TELA DE INTRODUÇÃO -->
+  <div id="introScreen">
+    <div class="intro-content">
+      <div class="intro-logo">
+        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v4.7c0 4.67-3.13 8.97-7 10.06-3.87-1.09-7-5.39-7-10.06V6.3l7-3.12z"/></svg>
+      </div>
+      <h1 class="intro-title">A ORDEM</h1>
+      <p class="intro-text">
+        Você recebeu este celular.<br>
+        A Ordem está lhe convocando.<br><br>
+        Use seu nome de agente para acessar.
+      </p>
+      <button id="introBtn">Aceitar Missão</button>
+    </div>
+  </div>
+
+  <!-- TELA DE BLOQUEIO -->
+  <div id="lockScreen">
+    <div id="clock">--:--</div>
+    <div id="date">—</div>
+    <div class="lock-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 5a3 3 0 0 1 6 0v3H9V6zm3 9a2 2 0 0 1 2 2 2 2 0 0 1-1 1.73V21h-2v-2.27A2 2 0 0 1 10 17a2 2 0 0 1 2-2z"/></svg>
+    </div>
+    <div id="lockLabel">Identificação</div>
+    <input type="text" id="nameInput" placeholder="Digite seu nome" autocomplete="off" autocapitalize="words" spellcheck="false">
+    <button id="unlockBtn">Desbloquear</button>
+    <div id="errorMsg"></div>
+  </div>
+
+  <!-- HOME -->
+  <div id="homeScreen">
+    <div id="homeGreeting">Bem-vindo, agente</div>
+    <div id="homeName">—</div>
+
+    <div class="app-grid">
+      <div class="app-icon" data-app="navegador">
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 4h6v2h-6V8zm0 4h6v2h-6v-2zm-4-4h2v2H8V8zm0 4h2v2H8v-2z"/></svg>
+        </div>
+        <span>Terminal</span>
+      </div>
+      <div class="app-icon" data-app="arquivos">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"/></svg></div>
+        <span>Arquivos</span>
+      </div>
+      <div class="app-icon" data-app="mensagens">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/></svg></div>
+        <span>Mensagens</span>
+      </div>
+      <div class="app-icon" data-app="galeria">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></div>
+        <span>Galeria</span>
+      </div>
+      <div class="app-icon" data-app="telefone">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg></div>
+        <span>Telefone</span>
+      </div>
+      <div class="app-icon" data-app="configuracoes">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.03 7.03 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg></div>
+        <span>Configurações</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TELA DE APP -->
+  <div id="appScreen">
+    <div id="appHeader">
+      <div id="appBackBtn"><svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg></div>
+      <div id="appTitle">App</div>
+    </div>
+    
+    <div id="appBody">
+
+      <!-- 1. PLACEHOLDER -->
+      <div id="placeholderContent" class="app-content">
+        <p><strong id="appBodyName">App</strong> em construção.</p>
+      </div>
+                
+<!-- 2. TERMINAL DA ORDO -->
+<div id="navegadorContent" class="app-content">
+    
+    <!-- 1. TELA DE ANÁLISE -->
+    <section id="tela-analise" class="tela-ordo">
+        <div class="analise-conteudo">
+            <div class="analise-simbolo" id="analise-simbolo">◈</div>
+            <h1 class="analise-titulo">ANÁLISE EM ANDAMENTO</h1>
+            <p class="analise-status" id="analise-status">Iniciando protocolo...</p>
+            <div class="analise-barra">
+                <div class="analise-barra-preenchida" id="analise-barra"></div>
+            </div>
+            <ul class="analise-lista" id="analise-lista"></ul>
+            <div class="flash-foto" id="flash-foto"></div>
+        </div>
+    </section>
+
+    <!-- 2. TELA ORDO (Boas vindas) -->
+    <section id="tela-ordo" class="tela-ordo" hidden>
+        <div class="fundo-selos" id="fundo-selos"></div>
+        <div class="conteudo-ordo">
+            <img src="imagem/logo_ordo.png" alt="Ordo Realitas" class="logo-ordo">
+            <div class="status-sistema">
+                <span class="led-verde"></span> IDENTIDADE RECONHECIDA
+            </div>
+            <p class="texto-terminal" id="texto-terminal"></p>
+            <p class="aviso-restrito">/// AGUARDE NOVAS INSTRUÇÕES ///</p>
+            <button id="acessar-comunicacao" type="button">ACESSAR COMUNICAÇÃO</button>
+        </div>
+    </section>
+
+    <!-- 3. CENTRAL DE COMUNICAÇÃO -->
+    <section id="central-comunicacao" class="tela-ordo" hidden>
+        <div id="tela-scanner" class="conteudo-central">
+            <h1>ESCANEAMENTO BIOMÉTRICO</h1>
+            <p class="texto-sistema" id="status-scanner">Iniciando varredura facial...</p>
+            <div class="scanner-camera">
+                <div class="linha-scanner"></div>
+                <svg class="rosto-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <div class="cantos-mira"></div>
+            </div>
+            <div class="barra-scanner">
+                <div class="barra-scanner-preenchida" id="progresso-scanner"></div>
+            </div>
+        </div>
+
+        <div id="form-agente" class="conteudo-central" hidden>
+            <canvas id="matrix-ordo" class="matrix-bg"></canvas>
+            <div class="conteudo-form">
+                <div class="topo-sistema">
+                    <span class="led-verde"></span> CONEXÃO SEGURA ESTABELECIDA
+                </div>
+                <h1 class="titulo-alerta">ÁREA RESTRITA</h1>
+                <p class="texto-sistema">Acesso à base de dados da Ordo Realitas</p>
+                <div class="caixa-comando">
+                    <p class="instrucao">AGENTE, INSIRA SEU NÚMERO DE IDENTIFICAÇÃO PARA CONTINUAR:</p>
+                    <div class="input-terminal">
+                        <span class="prompt">&gt;</span>
+                        <input type="text" id="numero-agente" placeholder="Digite aqui..." autocomplete="off">
+                    </div>
+                    <button id="consultar-agente" type="button">EXECUTAR CONSULTA</button>
+                    <p id="resultado-agente" class="erro-terminal"></p>
+                </div>
+                <button id="voltar-ordo" class="btn-voltar-sistema" type="button">DESCONECTAR</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CONFIRMAÇÃO -->
+    <section id="confirmacao-agente" class="tela-ordo" hidden>
+        <div id="tela-busca-agente" class="conteudo-central">
+            <div class="simbolo-busca">⟳</div>
+            <h1 class="titulo-busca">BUSCANDO REGISTRO</h1>
+            <p class="texto-sistema" id="status-busca">Acessando banco de dados...</p>
+            <div class="caixa-numero-busca" id="caixa-numero-busca">
+                <span id="numero-aleatorio">----</span>
+            </div>
+        </div>
+        <div id="resultado-busca-agente" class="conteudo-central" hidden>
+            <h1>VERIFICANDO<br>IDENTIDADE</h1>
+            <p class="texto-verde">Analisando credenciais...</p>
+        </div>
+    </section>
+
+    <!-- 5. DOSSIÊ -->
+    <section id="dossie-agente" class="tela-ordo" hidden>
+        <img src="imagem/Cabeçalho_ordo.png" alt="Ordo Realitas" class="logo-dossie">
+        <h1>DOSSIÊ DO AGENTE</h1>
+        <p class="subtitulo-dossie">DEPARTAMENTO DE REGISTROS</p>
+        <div class="dados-dossie">
+            <h2>IDENTIFICAÇÃO</h2>
+            <p><strong>NÚMERO DO AGENTE:</strong> <span id="dossie-numero">---</span></p>
+            <p><strong>NOME:</strong> <span id="dossie-nome">---</span></p>
+            <p><strong>STATUS:</strong> <span class="status-verde">ATIVO</span></p>
+            <p><strong>NÍVEL DE ACESSO:</strong> <span class="status-vermelho">RESTRITO</span></p>
+        </div>
+        <div class="dados-dossie">
+            <h2>ARQUIVO RESTRITO</h2>
+            <p>As informações deste arquivo são destinadas exclusivamente ao agente qualificado.</p>
+            <button id="btn-tentar-acesso" class="btn-acesso-restrito" type="button">ACESSAR ARQUIVO</button>
+        </div>
+        <div class="dados-dossie registros-operacionais">
+            <h2>REGISTROS OPERACIONAIS</h2>
+            <h3>HISTÓRICO DE MISSÕES</h3>
+            <p><strong>REGISTRO:</strong> 001</p>
+            <p><strong>OPERAÇÃO:</strong> AGUARDANDO DESIGNAÇÃO</p>
+            <p><strong>STATUS:</strong> NÃO INICIADA</p>
+            <p><strong>CLASSIFICAÇÃO:</strong> RESTRITA</p>
+            <p class="sem-registros">NÃO HÁ OUTROS REGISTROS DISPONÍVEIS.</p>
+        </div>
+        <button id="voltar-central" type="button" style="margin-top:20px;">DESCONECTAR SESSÃO</button>
+
+        <div id="tela-erro-sistema" hidden>
+            <div class="conteudo-erro">
+                <h1 class="glitch-text" data-text="ACESSO NEGADO">ACESSO NEGADO</h1>
+                <p>Você não possui qualificação necessária.</p>
+                <button id="btn-forcar-acesso" type="button">FORÇAR ACESSO</button>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+      <!-- 3. GALERIA -->
+      <div id="galeriaContent" class="app-content">
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+
+      <!-- 4. ARQUIVOS -->
+      <div id="arquivosContent" class="app-content">
+        <div class="file-list" id="fileList">
+          <p style="text-align:center; color: rgba(255,255,255,0.4); margin-top:20px;">Nenhum arquivo no dispositivo.</p>
+        </div>
+      </div>
+
+      <!-- 5. TELEFONE -->
+      <div id="telefoneContent" class="app-content">
+        <div class="phone-display" id="phoneDisplay">Digite um número</div>
+        <div class="phone-keypad">
+          <button class="key" data-num="1">1</button>
+          <button class="key" data-num="2">2</button>
+          <button class="key" data-num="3">3</button>
+          <button class="key" data-num="4">4</button>
+          <button class="key" data-num="5">5</button>
+          <button class="key" data-num="6">6</button>
+          <button class="key" data-num="7">7</button>
+          <button class="key" data-num="8">8</button>
+          <button class="key" data-num="9">9</button>
+          <button class="key" data-num="*">*</button>
+          <button class="key" data-num="0">0</button>
+          <button class="key" data-num="#">#</button>
+        </div>
+        <div class="phone-actions">
+            <button id="backspaceBtn" class="backspace-btn">⌫</button>
+            <button id="callBtn" class="call-btn">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 6. MENSAGENS -->
+      <div id="mensagensContent" class="app-content">
+        <div id="chatList" class="chat-list"></div>
+        <div id="chatView" class="chat-view">
+          <div class="chat-header">
+            <div class="chat-back" id="chatBackBtn">←</div>
+            <div class="chat-title" id="chatWithName">Contato</div>
+          </div>
+          <div class="chat-messages" id="chatMessages"></div>
+        </div>
+      </div>
+
+      <!-- 7. CONFIGURAÇÕES -->
+      <div id="configContent" class="app-content">
+        <div class="config-section">
+          <div class="config-item">
+            <div class="config-label"><span>Wi-Fi</span></div>
+            <div class="config-toggle active" id="toggleWifi"><div class="toggle-knob"></div></div>
+          </div>
+          <div class="config-item">
+            <div class="config-label"><span>Dados Móveis</span></div>
+            <div class="config-toggle active" id="toggleData"><div class="toggle-knob"></div></div>
+          </div>
+          <div class="config-item">
+            <div class="config-label"><span>Modo Avião</span></div>
+            <div class="config-toggle" id="toggleAviao"><div class="toggle-knob"></div></div>
+          </div>
+        </div>
+
+        <div class="config-section">
+          <div class="config-item">
+            <div class="config-label"><span>Rastreamento Remoto</span></div>
+            <div style="color: #ff4d6d; font-size: 12px; font-weight: 600; letter-spacing: 1px;">ATIVADO</div>
+          </div>
+        </div>
+
+        <div class="config-section">
+          <div class="config-item" style="flex-direction: column; align-items: flex-start; gap: 12px;">
+            <span>Brilho da Tela</span>
+            <input type="range" class="brightness-slider" min="10" max="100" value="70">
+          </div>
+        </div>
+
+        <div class="config-section">
+          <div class="config-item">
+            <div class="config-label"><span>Notificações</span></div>
+            <div class="config-toggle active fake-toggle"><div class="toggle-knob"></div></div>
+          </div>
+        </div>
+
+        <div class="config-section">
+          <div class="config-header">INFORMAÇÕES DO DISPOSITIVO</div>
+          <div class="device-info">
+            <div class="info-row"><span>MODELO:</span> <span>SEC-386-OPSNF</span></div>
+            <div class="info-row"><span>PROPRIETÁRIO:</span> <span id="deviceOwner">---</span></div>
+            <div class="info-row"><span>STATUS:</span> <span>CONECTADO À REDE</span></div>
+          </div>
+        </div>
+
+        <div class="config-section">
+          <button id="formatBtn" class="danger-btn">Formatar Dispositivo</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL DE FOTO (Galeria) -->
+  <div id="photoModal">
+    <div id="photoModalClose">X</div>
+    <img id="photoModalImg" src="" alt="Foto">
+  </div>
+
+
+  <!-- MODAL DE ARQUIVO (Relatórios) -->
+  <div id="fileModal" role="dialog" aria-modal="true" aria-labelledby="fileModalTitle">
+    <div class="file-modal-panel">
+      <div class="file-modal-header">
+        <h2 id="fileModalTitle">Documento</h2>
+        <button id="fileModalClose" type="button" aria-label="Fechar documento">×</button>
+      </div>
+      <pre id="fileModalContent"></pre>
+    </div>
+  </div>
+
+  <!-- MODAL DE CHAMADA (Telefone) -->
+  <div id="callModal">
+    <div class="call-info">
+      <h2 id="callName">Desconhecido</h2>
+      <p id="callStatus">Chamando...</p>
+    </div>
+    <button id="endCallBtn" class="end-call-btn">Desligar</button>
+  </div>
+
+  <!-- BARRA DE NAVEGAÇÃO (Android) -->
+  <div id="navBar">
+    <div class="nav-btn" id="navBack">◀</div>
+    <div class="nav-btn" id="navHome">●</div>
+    <div class="nav-btn" id="navRecents">■</div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
