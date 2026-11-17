@@ -54,7 +54,7 @@ const AGENTES = {
                            mensagens: ["Agente.", "Tudo saindo conforme o plano?", "Aguarde novas ordens."] }], arquivos: [RELATORIO_OCORRENCIA], 
              fotos: ["Imagem/papel_ligacao.jpg"] 
            },
-  "Nailson": { nomeExibicao: "JARVIS_BARTOLOMEU", 
+  "nailson": { nomeExibicao: "JARVIS_BARTOLOMEU", 
                identificacao: "0359-OR", 
                contatos: [{ nome: "Poderoso Chefão", 
                             numero: "482731", 
