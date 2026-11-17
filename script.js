@@ -102,10 +102,15 @@ function normalizar(str) { return str.toLowerCase().trim().normalize("NFD").repl
 function identificarAgente(entrada) {
   const tentativa = normalizar(entrada);
   if (!tentativa) return null;
-  if (AGENTES[tentativa]) return { chave: tentativa, ...AGENTES[tentativa] };
-  const candidatos = Object.keys(AGENTES).filter(k => k.split(" ")[0] === tentativa);
-  if (candidatos.length === 1) return { chave: candidatos[0], ...AGENTES[candidatos[0]] };
-  return null;
+
+  // A comparação normalizada evita diferenças entre maiúsculas/minúsculas
+  // nos nomes cadastrados (por exemplo, "Teste" e "teste").
+  const chaveEncontrada = Object.keys(AGENTES).find(
+    chave => normalizar(chave) === tentativa
+  );
+
+  if (!chaveEncontrada) return null;
+  return { chave: chaveEncontrada, ...AGENTES[chaveEncontrada] };
 }
 
 let usuarioAtual = null;
